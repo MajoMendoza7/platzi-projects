@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Piedra, papel o tijera</title>
+        <script>
+
+            let jugador = 0
+            let pc = 0
+            let triunfos = 0
+            let perdidas = 0
+
+            // funcion para elecciones jugador y pc
+            function eleccion(jugada) {
+                let resultado = ""
+                if (jugada == 1) {
+                    resultado = "piedra"
+                } else if (jugada == 2) {
+                     resultado = "papel"
+                } else if (jugada == 3) {
+                   resultado = "tijera"
+                } else {
+                    resultado = "mal"
+                }
+                return resultado
+            }
+
+            //funcion para que la pc tenga un numero aleatorio
+            function aleatorio(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+            }
+
+            //funcion de resultados
+            function combate (pc, jugador) {
+            let punteo = ""
+            if (jugador == pc) {
+                punteo = "EMPATE"
+            } else if (jugador == 1 && pc == 3 || jugador == 2 && pc == 1 || jugador == 3 && pc == 2) {
+                punteo = "GANASTE"
+                triunfos = triunfos + 1
+            } else {
+                punteo = "PERDISTE"
+                perdidas = perdidas + 1
+            }    
+            return punteo
+            }
+            
+            while (triunfos < 3 && perdidas < 3) {
+                jugador = prompt("Elije 1 para piedra, 2 para papel y 3 para tijera")
+                pc = aleatorio(1, 3)
+
+                //se llama a la funcion de elecciones
+                alert("Tu elegiste " + eleccion(jugador))
+                alert("PC eligio " + eleccion(pc))
+
+                //se llama a la funcion de combate
+                alert (combate(pc, jugador))
+
+            if (triunfos > 3) {
+                    alert(ronda(triunfos) + "ganaste")
+                } else if (perdidas > 3) {
+                    alert(ronda(perdidas) + "perdiste")
+                }
+            alert(" Ganaste " + triunfos + " veces. Perdiste " + perdidas + " veces.") 
+            }
+        if (perdidas == 3) {
+            alert ("PERDISTE EL JUEGO 😥 ")
+        } else if (triunfos == 3) {
+            alert ("GANASTE EL JUEGO 🎊 ")
+        }
+        </script>
+    
+    </head>
+    <body>
+        <h1>Piedra, papel o tijera</h1>
+    </body>
+</html>
